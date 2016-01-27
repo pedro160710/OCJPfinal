@@ -5,13 +5,15 @@
  */
 package com.Negocio;
 
+import java.io.Serializable;
+
 import com.Padres.Vehiculo;
 
 /**
  * @author Pedro
  *
  */
-public class Prestamo {
+public class Prestamo implements Serializable{
 
 	protected Vehiculo vehiculo;
 	protected Cliente cliente;

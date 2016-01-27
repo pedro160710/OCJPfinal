@@ -4,11 +4,13 @@
  */
 package com.Padres;
 
+import java.io.Serializable;
+
 /**
  * @author Pedro
  *
  */
-public abstract class Vehiculo implements Disponible {
+public abstract class Vehiculo implements Disponible, Serializable {
 
 	protected String placa = "";
 	protected String marca = "";

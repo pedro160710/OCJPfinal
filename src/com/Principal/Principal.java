@@ -4,6 +4,10 @@
  */
 package com.Principal;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -52,6 +56,7 @@ public class Principal {
 		System.out.println("4 Mostrar Rentados");
 		System.out.println("5 Rentar Vehiculo");
 		System.out.println("6 Receptar Vehiculo");
+		System.out.println("7 Generar informe de vehiculos rentados");
 		Scanner opcionMenu = new Scanner(System.in);
 		switch (opcionMenu.nextInt()) {
 		case 1:
@@ -96,11 +101,32 @@ public class Principal {
 			System.out.println("RECEPCION DE VEHICULO:");
 			receptarVehiculo();
 			break;
+		case 7:
+			System.out.println("GENRAR INFORME:");
+			generarInforme();
+			break;
 		default:
 			System.out.println("No existe tal opcion");
 		}
 
 	}
+
+	private static void generarInforme() {
+		try {
+			FileOutputStream archivo = new FileOutputStream("reporte.txt");
+			ObjectOutputStream escritor = new ObjectOutputStream(archivo);//aca es el error cuando no se serailiza
+			escritor.writeObject(listaPrestamos);
+			escritor.flush();
+			escritor.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Algo salio mal ");
+		} catch (IOException e) {
+			System.out.println("Algo salio mal con la lectura");
+		}finally {
+		     System.out.println("Archivo generado en el directorio del proyecto");
+		}
+	
+}
 
 	/**
 	 * Metodo para receptar un vehiculo, dentro de el se pedira al usuario que
