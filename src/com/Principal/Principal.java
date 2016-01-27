@@ -326,7 +326,8 @@ public class Principal {
 			System.out.println(i + ": "
 					+ listaVehiculos.get(i).getClass().getSimpleName() + " "
 					+ listaVehiculos.get(i).getMarca() + ": "
-					+ listaVehiculos.get(i).getModelo());
+					+ listaVehiculos.get(i).getModelo()+ "/ Placa: "
+					+ listaVehiculos.get(i).getPlaca());
 
 			if (listaVehiculos.get(i).isDisponible()) {
 				System.out.println(" Disponible" + "\n");
