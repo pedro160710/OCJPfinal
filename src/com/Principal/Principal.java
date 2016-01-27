@@ -12,8 +12,8 @@ import com.Negocio.*;
 import com.Padres.*;
 
 /**
- * @author Pedro
- *
+ * @author Pedro, Andres
+ * 
  */
 public class Principal {
 
