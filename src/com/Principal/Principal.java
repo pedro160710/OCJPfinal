@@ -20,9 +20,9 @@ import com.Padres.*;
  * 
  */
 public class Principal {
-	/*lista que contiene el sctock de vehiculos*/	
+	/* lista que contiene el sctock de vehiculos */
 	public static List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
-	/*lista de objetos de tipo Prestamo*/
+	/* lista de objetos de tipo Prestamo */
 	public static List<Prestamo> listaPrestamos = new ArrayList<Prestamo>();
 
 	public Principal() {
@@ -46,8 +46,6 @@ public class Principal {
 
 	}
 
-
-
 	/**
 	 * metodo que muestra el menu principal de la aplicacion
 	 */
@@ -65,23 +63,28 @@ public class Principal {
 		switch (opcionMenu.nextInt()) {
 		case 1:
 			System.out
-			.println("BUSQUEDA VEHICULO\nIngrese la placa del vehiculo: ");
+					.println("BUSQUEDA VEHICULO\nIngrese la placa del vehiculo: ");
 			Prestamista.buscarVehiculo(listaVehiculos);
 			break;
 		case 2:
 			if (!listaPrestamos.isEmpty()) {
 				System.out
-				.println("BUSQUEDA CLIENTE \nIngrese la cedula a buscar: ");
+						.println("BUSQUEDA CLIENTE \nIngrese la cedula a buscar: ");
 				Scanner scanCedula = new Scanner(System.in);
 				String cedula = scanCedula.nextLine();
 
-				if (Prestamista.buscarCliente(cedula, listaPrestamos) < listaPrestamos.size()) {
+				if (Prestamista.buscarCliente(cedula, listaPrestamos) < listaPrestamos
+						.size()) {
 					System.out.println("Cliente: "
-							+ listaPrestamos.get(Prestamista.buscarCliente(cedula, listaPrestamos))
-							.getCliente().getApellido()
+							+ listaPrestamos
+									.get(Prestamista.buscarCliente(cedula,
+											listaPrestamos)).getCliente()
+									.getApellido()
 							+ " "
-							+ listaPrestamos.get(Prestamista.buscarCliente(cedula, listaPrestamos))
-							.getCliente().getNombre());
+							+ listaPrestamos
+									.get(Prestamista.buscarCliente(cedula,
+											listaPrestamos)).getCliente()
+									.getNombre());
 				} else {
 					System.out.println("No existe el cliente");
 				}
@@ -107,14 +110,15 @@ public class Principal {
 			break;
 		case 7:
 			System.out.println("GENRAR INFORME:");
-			try{
+			try {
 				Prestamista.generarInforme(listaPrestamos);
 			} catch (FileNotFoundException e) {
 				System.out.println("Algo salio mal ");
 			} catch (IOException e) {
 				System.out.println("Algo salio mal con la lectura");
-			}finally {
-				System.out.println("el archivo se gaurdará en el directorio del proyecto");
+			} finally {
+				System.out
+						.println("el archivo se gaurdará en el directorio del proyecto");
 			}
 			break;
 		default:
@@ -122,6 +126,5 @@ public class Principal {
 		}
 
 	}
-
 
 }

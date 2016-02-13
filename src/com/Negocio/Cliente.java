@@ -11,7 +11,7 @@ import com.Padres.Persona;
  * @author Pedro
  *
  */
-public class Cliente extends Persona implements Serializable{
+public class Cliente extends Persona implements Serializable {
 
 	public Cliente(String nombre, String apellido, String cedula, int edad) {
 		super(nombre, apellido, cedula, edad);

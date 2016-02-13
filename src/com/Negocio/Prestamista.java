@@ -7,7 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 import com.Padres.Colores;
@@ -18,12 +20,13 @@ import com.Padres.Vehiculo;
  * @author Pedro
  *
  */
-public class Prestamista extends Persona{
+public class Prestamista extends Persona {
 
 	public Prestamista(String nombre, String apellido, String cedula, int edad) {
 		super(nombre, apellido, cedula, edad);
 		// TODO Auto-generated constructor stub
 	}
+
 	/**
 	 * Metodo para receptar un vehiculo, dentro de el se pedira al usuario que
 	 * ingrese el numero de cedula del cliente
@@ -39,7 +42,8 @@ public class Prestamista extends Persona{
 				String cedula = scanCedula.nextLine();
 				// dado el numero de cedula encontrar la posicion del prestamo
 				// en la lista
-				if (buscarCliente(cedula, listaPrestamos ) < listaPrestamos.size()) {
+				if (buscarCliente(cedula, listaPrestamos) < listaPrestamos
+						.size()) {
 					int posicionCliente = buscarCliente(cedula, listaPrestamos);
 					// debe retornar la
 					// posicion en la
@@ -48,7 +52,7 @@ public class Prestamista extends Persona{
 					// listaPrestamos
 					// obtener el vehiculo prestado y usar el metodo de receptar
 					listaPrestamos.get(posicionCliente).getVehiculo()
-					.receptar();
+							.receptar();
 					// finalmente setear a null el elemento vehiculo en esa
 					// posicion
 					// de la listaPrestamos
@@ -67,7 +71,6 @@ public class Prestamista extends Persona{
 		}
 
 	}
-
 
 	/**
 	 * Clase que permite encontrar la ubicacion de un elemento dentro de un
@@ -94,7 +97,6 @@ public class Prestamista extends Persona{
 		// busqueda en el futuro puede dar errores
 	}
 
-
 	/**
 	 * Metodo que muestra las transacciones de renta realizadas
 	 */
@@ -106,7 +108,7 @@ public class Prestamista extends Persona{
 			if (listaPrestamos.get(i).getVehiculo() != null) {
 				System.out.println("\nVEHICULO: "
 						+ listaPrestamos.get(i).getVehiculo().getClass()
-						.getSimpleName() + " "
+								.getSimpleName() + " "
 						+ listaPrestamos.get(i).getVehiculo().getMarca() + " "
 						+ listaPrestamos.get(i).getVehiculo().getModelo() + " "
 						+ listaPrestamos.get(i).getVehiculo().getPlaca() + " "
@@ -121,21 +123,22 @@ public class Prestamista extends Persona{
 	 * Metodo que toma los datos necesarios para rentar un vehiculo inluyendo
 	 * los lados del usuario
 	 */
-	public static void rentarVehiculo(List<Prestamo> listaPrestamos, List<Vehiculo>listaVehiculos) {
+	public static void rentarVehiculo(List<Prestamo> listaPrestamos,
+			List<Vehiculo> listaVehiculos) {
 		// crear al cliente
 		Cliente cliente = crearCliente();
 		// escoger el vehiculo
 		if (cliente.getEdad() >= 18) {
 			System.out
-			.println("Escoja el numero del vehiculo que desea alquilar: del 0 al"
-					+ (listaPrestamos.size() - 1));
+					.println("Escoja el numero del vehiculo que desea alquilar: del 0 al"
+							+ (listaPrestamos.size() - 1));
 			Scanner opcionVehiculo = new Scanner(System.in);
 			int opcionVehiculoi = opcionVehiculo.nextInt();
 			if (validarPrestamo(opcionVehiculoi, listaVehiculos)) {
 				Vehiculo vehiculo = (Vehiculo) listaVehiculos
 						.get(opcionVehiculoi);
 				System.out
-				.println("Escoja el numero de dias que desea alquilar el vehiculo:");
+						.println("Escoja el numero de dias que desea alquilar el vehiculo:");
 				Scanner scanNumDias = new Scanner(System.in);
 				int numDias = scanNumDias.nextInt();
 				// crear una lista de prestamos y enviar como parametro al
@@ -176,7 +179,6 @@ public class Prestamista extends Persona{
 
 	}
 
-
 	/**
 	 * Metodo que permite validar si un recurso ha sido o no prestado
 	 * 
@@ -184,15 +186,14 @@ public class Prestamista extends Persona{
 	 * @param respuestaUs
 	 * @return
 	 */
-	private static boolean validarPrestamo(int indiceVehiculo,  List<Vehiculo>listaVehiculos) {
+	private static boolean validarPrestamo(int indiceVehiculo,
+			List<Vehiculo> listaVehiculos) {
 		if (listaVehiculos.get(indiceVehiculo).isDisponible()) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-
-
 
 	/**
 	 * Metodo que permite buscar un vehiculo en una lista, no es necesario
@@ -236,7 +237,7 @@ public class Prestamista extends Persona{
 					System.out.println("Cilindraje: " + sedan.getCilindraje());
 				}
 				break;
-			} else if (i == listaVehiculos.size()-1) {
+			} else if (i == listaVehiculos.size() - 1) {
 				System.out.println("Vehiculo no encontrado");
 
 			}
@@ -245,32 +246,28 @@ public class Prestamista extends Persona{
 
 	}
 
-
-
-
 	/**
 	 * Metodo para mostrar los datos de vehiculos en inventario
 	 */
 	public static void mostrarVehiculos(List<Vehiculo> listaVehiculos) {
+		Locale localizacion = Locale.CANADA;
+		NumberFormat formatoMoneda = NumberFormat
+				.getCurrencyInstance(localizacion);
 		for (int i = 0; i < listaVehiculos.size(); i++) {
 			System.out.println(i + ": "
 					+ listaVehiculos.get(i).getClass().getSimpleName() + " "
 					+ listaVehiculos.get(i).getMarca() + ": "
-					+ listaVehiculos.get(i).getModelo()+ "/ Placa: "
-					+ listaVehiculos.get(i).getPlaca());
+					+ listaVehiculos.get(i).getModelo() + "/ Placa: "
+					+ listaVehiculos.get(i).getPlaca() + "\n" + "Costo: "
+					+ formatoMoneda.format(listaVehiculos.get(i).getCosto()));
 
 			if (listaVehiculos.get(i).isDisponible()) {
-				System.out.println(" Disponible" + "\n");
+				System.out.println("Estado: Disponible" + "\n");
 			} else {
 				System.out.println(" No Disponible" + "\n");
 			}
 		}
 	}
-
-
-
-
-
 
 	/**
 	 * Metodo para crear vehiculos de distinta clase y almacenar en una Lista
@@ -316,14 +313,19 @@ public class Prestamista extends Persona{
 				"2006", 198454, 68, true, 1.6, "Elantra"));
 	}
 
-	public static void generarInforme(List<Prestamo>listaPrestamos) throws IOException {
-		//try {
+	public static void generarInforme(List<Prestamo> listaPrestamos)
+			throws IOException {
+		// try {
 		FileOutputStream archivo = new FileOutputStream("reporte.txt");
-		ObjectOutputStream escritor = new ObjectOutputStream(archivo);//aca es el error cuando no se serailiza
+		ObjectOutputStream escritor = new ObjectOutputStream(archivo);// aca es
+																		// el
+																		// error
+																		// cuando
+																		// no se
+																		// serailiza
 		escritor.writeObject(listaPrestamos);
 		escritor.flush();
 		escritor.close();
-
 
 	}
 

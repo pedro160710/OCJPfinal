@@ -14,7 +14,8 @@ public class Limusina extends Vehiculo {
 	protected int capacidad;// capacida de personas
 
 	public Limusina(String placa, String marca, Colores color, String anio,
-			int kilometraje, double costo, boolean disponible, int capacidad,String modelo) {
+			int kilometraje, double costo, boolean disponible, int capacidad,
+			String modelo) {
 		super(placa, marca, color, anio, kilometraje, costo, disponible, modelo);
 		// TODO Auto-generated constructor stub
 
@@ -29,11 +30,11 @@ public class Limusina extends Vehiculo {
 	}
 
 	/**
-	 * @param capacidad the capacidad to set
+	 * @param capacidad
+	 *            the capacidad to set
 	 */
 	public void setCapacidad(int capacidad) {
 		this.capacidad = capacidad;
 	}
-
 
 }

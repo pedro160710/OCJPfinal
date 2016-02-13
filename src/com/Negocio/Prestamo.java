@@ -13,7 +13,7 @@ import com.Padres.Vehiculo;
  * @author Pedro
  *
  */
-public class Prestamo implements Serializable{
+public class Prestamo implements Serializable {
 
 	protected Vehiculo vehiculo;
 	protected Cliente cliente;
@@ -33,7 +33,8 @@ public class Prestamo implements Serializable{
 	}
 
 	/**
-	 * @param vehiculo the vehiculo to set
+	 * @param vehiculo
+	 *            the vehiculo to set
 	 */
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
@@ -47,7 +48,8 @@ public class Prestamo implements Serializable{
 	}
 
 	/**
-	 * @param cliente the cliente to set
+	 * @param cliente
+	 *            the cliente to set
 	 */
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
@@ -61,12 +63,11 @@ public class Prestamo implements Serializable{
 	}
 
 	/**
-	 * @param numDias the numDias to set
+	 * @param numDias
+	 *            the numDias to set
 	 */
 	public void setNumDias(int numDias) {
 		this.numDias = numDias;
 	}
-
-
 
 }
