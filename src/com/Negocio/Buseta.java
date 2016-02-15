@@ -30,13 +30,12 @@ public class Buseta extends Vehiculo {
 	}
 
 	/**
-	 * @param capacidadPersonas the capacidadPersonas to set
+	 * @param capacidadPersonas
+	 *            the capacidadPersonas to set
 	 */
 	public void setCapacidadPersonas(int capacidadPersonas) {
 		this.capacidadPersonas = capacidadPersonas;
 	}
-
-
 
 	/**
 	 * 

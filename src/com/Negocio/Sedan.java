@@ -14,7 +14,8 @@ public class Sedan extends Vehiculo {
 	protected double cilindraje;
 
 	public Sedan(String placa, String marca, Colores color, String anio,
-			int kilometraje, double costo, boolean disponible, double cilindraje,String modelo) {
+			int kilometraje, double costo, boolean disponible,
+			double cilindraje, String modelo) {
 		super(placa, marca, color, anio, kilometraje, costo, disponible, modelo);
 		// TODO Auto-generated constructor stub
 

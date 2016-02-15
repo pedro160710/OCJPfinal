@@ -5,13 +5,15 @@
  */
 package com.Negocio;
 
+import java.io.Serializable;
+
 import com.Padres.Vehiculo;
 
 /**
  * @author Pedro
  *
  */
-public class Prestamo {
+public class Prestamo implements Serializable {
 
 	protected Vehiculo vehiculo;
 	protected Cliente cliente;
@@ -31,7 +33,8 @@ public class Prestamo {
 	}
 
 	/**
-	 * @param vehiculo the vehiculo to set
+	 * @param vehiculo
+	 *            the vehiculo to set
 	 */
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
@@ -45,7 +48,8 @@ public class Prestamo {
 	}
 
 	/**
-	 * @param cliente the cliente to set
+	 * @param cliente
+	 *            the cliente to set
 	 */
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
@@ -59,12 +63,11 @@ public class Prestamo {
 	}
 
 	/**
-	 * @param numDias the numDias to set
+	 * @param numDias
+	 *            the numDias to set
 	 */
 	public void setNumDias(int numDias) {
 		this.numDias = numDias;
 	}
-
-
 
 }

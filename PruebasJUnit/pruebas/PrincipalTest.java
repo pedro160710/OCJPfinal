@@ -5,11 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import com.Negocio.Cliente;
+import com.Negocio.Prestamista;
 import com.Principal.Principal;
 
 public class PrincipalTest {
 	public static Cliente clienteTest = new Cliente("Pedro", "Cuasqui","1722799226", 18);
-	public static Principal principal = new Principal();
+	public static Prestamista principal =new Prestamista("Pedro", "Cuasqui","1722799226", 18);
 	public String cedula= "1722799226"; 
 	
 	
@@ -18,7 +19,7 @@ public class PrincipalTest {
 	 */
 	@Test
 	public void testCrearCliente() {
-		Cliente clientePrincipal = Principal.crearCliente();
+		Cliente clientePrincipal = Prestamista.crearCliente();
 		assertEquals(clienteTest.getApellido(),(clientePrincipal.getApellido()));
 		assertEquals(clienteTest.getCedula(),(clientePrincipal.getCedula()));
 		assertEquals(clienteTest.getEdad(),(clientePrincipal.getEdad()));
@@ -32,3 +33,4 @@ public class PrincipalTest {
 	}*/
 
 }
+

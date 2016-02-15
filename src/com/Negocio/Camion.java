@@ -8,11 +8,11 @@ import com.Padres.Vehiculo;
 
 public class Camion extends Vehiculo {
 
-	protected int capacidadCarga; //en toneladas
+	protected int capacidadCarga; // en toneladas
 
 	public Camion(String placa, String marca, Colores color, String anio,
 			int kilometraje, double costo, boolean disponible,
-			int capacidadCarga,String modelo) {
+			int capacidadCarga, String modelo) {
 		super(placa, marca, color, anio, kilometraje, costo, disponible, modelo);
 		// TODO Auto-generated constructor stub
 		this.setCapacidadCarga(capacidadCarga);
@@ -26,12 +26,11 @@ public class Camion extends Vehiculo {
 	}
 
 	/**
-	 * @param capacidadCarga the capacidadCarga to set
+	 * @param capacidadCarga
+	 *            the capacidadCarga to set
 	 */
 	public void setCapacidadCarga(int capacidadCarga) {
 		this.capacidadCarga = capacidadCarga;
 	}
-
-
 
 }
