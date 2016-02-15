@@ -20,11 +20,15 @@ import com.Padres.*;
  * 
  */
 public class Principal {
-	/* lista que contiene el sctock de vehiculos */
+	/* lista que contiene el stock de vehiculos */
 	public static List<Vehiculo> listaVehiculos = new ArrayList<Vehiculo>();
 	/* lista de objetos de tipo Prestamo */
 	public static List<Prestamo> listaPrestamos = new ArrayList<Prestamo>();
-
+	/* tiempo de renta de vehiculo*/
+	
+	 
+		
+		
 	public Principal() {
 		// TODO Auto-generated constructor stub
 	}
@@ -33,7 +37,7 @@ public class Principal {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		
 		Prestamista.crearListaVehiculos(listaVehiculos);
 
 		String continuar = "S";
@@ -59,6 +63,7 @@ public class Principal {
 		System.out.println("5 Rentar Vehiculo");
 		System.out.println("6 Receptar Vehiculo");
 		System.out.println("7 Generar informe de vehiculos rentados");
+		System.out.println("8 Salir");
 		Scanner opcionMenu = new Scanner(System.in);
 		switch (opcionMenu.nextInt()) {
 		case 1:
@@ -103,6 +108,7 @@ public class Principal {
 		case 5:
 			System.out.println("RENTAR VEHICULO:");
 			Prestamista.rentarVehiculo(listaPrestamos, listaVehiculos);
+			
 			break;
 		case 6:
 			System.out.println("RECEPCION DE VEHICULO:");
@@ -121,10 +127,16 @@ public class Principal {
 						.println("el archivo se gaurdará en el directorio del proyecto");
 			}
 			break;
+		case 8:
+			System.out.println("Gracias por visitar RENT A CAR");
+			System.exit(0);
 		default:
 			System.out.println("No existe tal opcion");
 		}
 
 	}
+
+	
+	
 
 }

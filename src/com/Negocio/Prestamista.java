@@ -3,11 +3,12 @@
  */
 package com.Negocio;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -20,8 +21,12 @@ import com.Padres.Vehiculo;
  * @author Pedro
  *
  */
-public class Prestamista extends Persona {
-
+public class Prestamista extends Persona implements Runnable{
+	
+	static Prestamista p1= new Prestamista("Andres", "Cusme", "1721889425", 23);
+	static Thread h1 = new Thread(p1,"Cliente 1");
+	static int counter=0;
+	
 	public Prestamista(String nombre, String apellido, String cedula, int edad) {
 		super(nombre, apellido, cedula, edad);
 		// TODO Auto-generated constructor stub
@@ -34,6 +39,14 @@ public class Prestamista extends Persona {
 	public static void receptarVehiculo(List<Prestamo> listaPrestamos) {
 		try {
 			if (!listaPrestamos.isEmpty()) {
+				//Creacion de fecha de recepción con formato
+				Date fechaRecep =new Date();
+				DateFormat fechaRecepcion = null;
+				//Creación de StringBuilder para almacenar fecha de recepcion
+				StringBuilder fecha= new StringBuilder("Fecha de recepcion ");
+				fecha.append(fechaRecepcion.getDateInstance(DateFormat.MEDIUM).format(fechaRecep));
+				
+				
 				System.out.println("Ingrese el numero de cédula del cliente: ");
 				// ingresar el numero de cedula de la persona que rento el
 				// vehiculo, para eso primero visualizar las rentas o buscar al
@@ -58,6 +71,7 @@ public class Prestamista extends Persona {
 					// de la listaPrestamos
 					listaPrestamos.get(posicionCliente).setVehiculo(null);
 					System.out.println("vehiculo retornado con exito");
+					System.out.println(" "+ fecha);
 				} else {
 					System.out.println("No existe el cliente");
 				}
@@ -123,8 +137,31 @@ public class Prestamista extends Persona {
 	 * Metodo que toma los datos necesarios para rentar un vehiculo inluyendo
 	 * los lados del usuario
 	 */
+	public static int numDias=0;
+	public static int getNumDias() {
+		return numDias;
+	}
+
+	@SuppressWarnings("deprecation")
 	public static void rentarVehiculo(List<Prestamo> listaPrestamos,
 			List<Vehiculo> listaVehiculos) {
+		if(counter==0){
+			h1.start();
+			counter ++;
+			}else {
+				try {
+					h1.sleep(10);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		// crear fecha de renta vehiculo
+		Date fechaRenta = new Date();
+		//creacion de StringBuilder
+		StringBuffer fecha = new StringBuffer(fechaRenta.toString());
+		fecha.append(" hora del alquiler: "+ fechaRenta.getHours()+":"+fechaRenta.getMinutes()+":" + fechaRenta.getSeconds());
 		// crear al cliente
 		Cliente cliente = crearCliente();
 		// escoger el vehiculo
@@ -140,13 +177,16 @@ public class Prestamista extends Persona {
 				System.out
 						.println("Escoja el numero de dias que desea alquilar el vehiculo:");
 				Scanner scanNumDias = new Scanner(System.in);
-				int numDias = scanNumDias.nextInt();
+				numDias = scanNumDias.nextInt();
+				
+				
 				// crear una lista de prestamos y enviar como parametro al
 				// cliente y
 				// al vehiculo
 				listaPrestamos.add(new Prestamo(vehiculo, cliente, numDias));
 				vehiculo.setDisponible(false);
-				System.out.println("vehiculo prestado con exito");
+				//System.out.println("vehiculo prestado con exito");
+				System.out.println("Su vehículo ha sido rentado en la siguiente fecha :" + fecha);
 			} else {
 				System.out.println("el vehiculo no esta disponible");
 			}
@@ -163,6 +203,10 @@ public class Prestamista extends Persona {
 	 * @return objeto de tipo cliente
 	 */
 	public static Cliente crearCliente() {
+		Cliente cliente = null;
+		if(p1!=null){
+			cliente = new Cliente(p1.nombre, p1.apellido, p1.cedula, p1.edad);
+		}else{
 		System.out.println("Ingrese sus datos personales:\n");
 		Scanner scanDatosCliente = new Scanner(System.in);
 		System.out.println("Nombre: ");
@@ -173,8 +217,8 @@ public class Prestamista extends Persona {
 		String cedula = scanDatosCliente.nextLine();
 		System.out.println("Edad: ");
 		int edad = scanDatosCliente.nextInt();
-		Cliente cliente = new Cliente(nombre, apellido, cedula, edad);
-
+		cliente = new Cliente(nombre, apellido, cedula, edad);
+		}
 		return cliente;
 
 	}
@@ -327,6 +371,11 @@ public class Prestamista extends Persona {
 		escritor.flush();
 		escritor.close();
 
+	}
+
+	@Override
+	public synchronized void run() {
+		System.out.println("Thread en ejecucion: " + Thread.currentThread().getName());
 	}
 
 }
